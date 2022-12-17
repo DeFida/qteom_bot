@@ -51,8 +51,8 @@ phrases = [
 
 bot.command('start', ctx => {
     console.log(ctx.from)
-    // bot.telegram.sendMessage(ctx.chat.id, 'Hello, MF.', {
-    // })
+    bot.telegram.sendMessage(ctx.chat.id, 'Hello, MF.', {
+    })
 
     job = schedule.scheduleJob('* * 7 * * *', () => {
         bot.telegram.sendMessage("@qteom", phrases[Math.floor(Math.random() * phrases.length)]);
@@ -72,5 +72,6 @@ bot.command('stop', ctx => {
 
 bot.launch();
 
-process.once("SIGINT", () => bot.stop("SIGINT"))
-process.once("SIGTERM", () => bot.stop("SIGTERM"))
+process.once('SIGINT', () => bot.stop('SIGINT'))
+process.once('SIGTERM', () => bot.stop('SIGTERM'))
+
