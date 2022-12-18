@@ -49,13 +49,22 @@ phrases = [
     `"A man who is convinced that he is right is almost impossible to convince that he is wrong." - Anonymous`
 ]
 
+
+
 bot.command('start', ctx => {
     console.log(ctx.from)
-    bot.telegram.sendMessage(ctx.chat.id, 'Hello, MF.', {
-    })
+    bot.telegram.sendMessage(ctx.chat.id, `Hello, phrase will be sent at 7:00`)
+    const fordays = phrases
 
     job = schedule.scheduleJob('* * 7 * * *', () => {
-        bot.telegram.sendMessage("@qteom", phrases[Math.floor(Math.random() * phrases.length)]);
+        if (fordays.length == 0) {
+            fordays = phrases
+        }
+        const toSend = Math.floor(Math.random() * fordays.length)
+        bot.telegram.sendMessage("@qteom", `${phrases[toSend]}`);
+
+        fordays.splice(toSend, 1);
+
     });
 })
 
