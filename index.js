@@ -46,17 +46,25 @@ phrases = [
     `"The man who has confidence in himself gains the confidence of others." - Hasidic Proverb`,
     `"If you can't fly then run, if you can't run then walk, if you can't walk then crawl, but whatever you do you have to keep moving forward." - Martin Luther King Jr.`,
     `"It is not the mountain we conquer, but ourselves." - Edmund Hillary`,
-    `"A man who is convinced that he is right is almost impossible to convince that he is wrong." - Anonymous`
+    `"A man who is convinced that he is right is almost impossible to convince that he is wrong." - Anonymous`,
+
+    `"The first responsibility of a man is to be a man, to be self-sufficient, to be able to stand on his own two feet." - from the book The Way of The Superior Man`,
+    `"A man must be independent and self-sufficient before he can be loving." - from the book The Way of The Superior Man`,
+    `"A man must first clean up his own backyard before he can move on to help others." - from the book The Way of The Superior Man`,
+    `"A man must always maintain his own integrity and not get caught up in the drama and emotions of others." - from the book The Way of The Superior Man`,
+    `"A man must be willing to take full responsibility for his actions and their consequences." - from the book The Way of The Superior Man`, ,
+    `"A man must be willing to face his own fears and confront his own weaknesses." - from the book The Way of The Superior Man`,
+    `"A man must cultivate his own inner strength and not rely on external validation or approval." - from the book The Way of The Superior Man`,
+    `"A man must be willing to take risks and embrace uncertainty in order to grow and evolve." - from the book The Way of The Superior Man`,
+    `A man must be true to his own values and principles, even if it means standing alone." - from the book The Way of The Superior Man`,
+    `"A man must always strive to be his best self and to live a life of purpose and meaning." - from the book The Way of The Superior Man`
 ]
 
 
 
 bot.command('start', ctx => {
-    console.log(ctx.from)
-    bot.telegram.sendMessage(ctx.chat.id, `Hello, phrase will be sent at 7:00`)
     const fordays = phrases
-
-    job = schedule.scheduleJob('* * 7 * * *', () => {
+    job = schedule.scheduleJob('* * 2 * * *', () => {
         if (fordays.length == 0) {
             fordays = phrases
         }
@@ -66,6 +74,12 @@ bot.command('start', ctx => {
         fordays.splice(toSend, 1);
 
     });
+
+
+})
+
+bot.command('isdeployed', ctx => {
+    bot.telegram.sendMessage(ctx.chat.id, "deployed");
 })
 
 
