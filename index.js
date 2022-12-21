@@ -69,8 +69,9 @@ bot.command('start', ctx => {
         if (fordays.length == 0) {
             fordays = phrases
         }
-        console.log(phrases[toSend]);
+
         const toSend = Math.floor(Math.random() * fordays.length)
+        console.log(phrases[toSend]);
         bot.telegram.sendMessage("@test_channel_againa", phrases[toSend]);
 
         fordays.splice(toSend, 1);
