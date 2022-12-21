@@ -65,14 +65,14 @@ let job;
 bot.command('start', ctx => {
     job = '';
     const fordays = phrases
-    job = schedule.scheduleJob('*/10 * * * * *', () => {
+    job = schedule.scheduleJob('0 0 2 * * *', () => {
         if (fordays.length == 0) {
             fordays = phrases
         }
 
         const toSend = Math.floor(Math.random() * fordays.length)
         console.log(phrases[toSend]);
-        bot.telegram.sendMessage("@test_channel_againa", phrases[toSend]);
+        bot.telegram.sendMessage("@qteom", phrases[toSend]);
 
         fordays.splice(toSend, 1);
 
