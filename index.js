@@ -3,7 +3,7 @@ const schedule = require("node-schedule");
 require('dotenv').config();
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
-let job;
+
 
 phrases = [
     `"Believe you can and you're halfway there." - Theodore Roosevelt`,
@@ -59,15 +59,17 @@ phrases = [
     `A man must be true to his own values and principles, even if it means standing alone." - from the book The Way of The Superior Man`,
     `"A man must always strive to be his best self and to live a life of purpose and meaning." - from the book The Way of The Superior Man`
 ]
-
+let job;
 
 
 bot.command('start', ctx => {
+    job = '';
     const fordays = phrases
-    job = schedule.scheduleJob('* * * * * *', () => {
+    job = schedule.scheduleJob('*/10 * * * * *', () => {
         if (fordays.length == 0) {
             fordays = phrases
         }
+        console.log(phrases[toSend]);
         const toSend = Math.floor(Math.random() * fordays.length)
         bot.telegram.sendMessage("@test_channel_againa", phrases[toSend]);
 
@@ -85,7 +87,6 @@ bot.command('isdeployed', ctx => {
 
 bot.command('stop', ctx => {
     console.log(ctx.from);
-
     if (job) {
         job.cancel()
     }
