@@ -64,7 +64,7 @@ phrases = [
 
 bot.command('start', ctx => {
     const fordays = phrases
-    job = schedule.scheduleJob('* * * * *', () => {
+    job = schedule.scheduleJob('* * * * * *', () => {
         if (fordays.length == 0) {
             fordays = phrases
         }
