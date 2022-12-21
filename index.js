@@ -64,12 +64,12 @@ phrases = [
 
 bot.command('start', ctx => {
     const fordays = phrases
-    job = schedule.scheduleJob('* * 2 * * *', () => {
+    job = schedule.scheduleJob('* */2 * * * *', () => {
         if (fordays.length == 0) {
             fordays = phrases
         }
         const toSend = Math.floor(Math.random() * fordays.length)
-        bot.telegram.sendMessage("@qteom", `${phrases[toSend]}`);
+        bot.telegram.sendMessage("@test_channel_againa", phrases[toSend]);
 
         fordays.splice(toSend, 1);
 
